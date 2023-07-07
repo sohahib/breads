@@ -18,6 +18,13 @@ app.use('/breads', breadsController)
 app.get('*', (req, res)=>{
     res.status(404).send(`<h1>404 page</h1>`)
 })
+
+// MIDDLEWARE
+app.set('views', __dirname + '/views')
+app.set('view engine', 'jsx')
+app.engine('jsx', require('express-react-views').createEngine())
+
+
 // LISTEN
 app.listen(PORT, () => {
   console.log('listening on port', PORT);
