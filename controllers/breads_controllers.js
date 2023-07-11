@@ -4,17 +4,23 @@ const Bread = require('../models/breads.js')
 
 // INDEX
 breads.get('/', (req, res) => {
-  res.render('Index', 
+  res.render('index', 
   {
     breads: Bread,
     title: 'Index Page'
   })
- // res.send(Bread)
 })
 
 // SHOW
 breads.get('/:arrayIndex', (req, res) => {
-    res.send(Bread[req.params.arrayIndex])
-  })
+  if (Bread[req.params.arrayIndex]) {
+    res.render('show', {
+      bread:Bread[req.params.arrayIndex]
+    })
+  } else {
+    res.render('404')
+  }
+})
+
   
 module.exports = breads
